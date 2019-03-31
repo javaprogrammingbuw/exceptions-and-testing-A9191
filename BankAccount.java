@@ -1,4 +1,3 @@
-package exceptions;
 
 import java.util.Random;
 
@@ -44,19 +43,23 @@ import java.util.Random;
 		}								
 	}
 	
-	public double getbalance(){
+	public double getBalance(){
 		return balance;
 	}
 	
-	public String getiban(){
+	public String getIban(){
 		return iban;
 	}
 	
-	public Person getowner(){
+	public Person getOwner(){
 		return owner;
 	}
+
+	public int getSecurityNumber(){
+		return this.securityNumber;
+	}
 	
-	public double getlimit(){
+	public double getLimit(){
 		return limit;
 	}
 	public void setbalance(double balance){
@@ -70,7 +73,7 @@ import java.util.Random;
 		}
 		else {			
 		
-		return balance;
+		return 0.0;
 		}
 	}
 	public double withdraw(double amount, int securityNumber){		
@@ -86,7 +89,7 @@ import java.util.Random;
 	
 	public void transfer(BankAccount remote, double amount, int securityNumber){
 		if((securityNumber==this.securityNumber)&&(amount<=limit)){							
-			 remote.setbalance(remote.getbalance()+amount);
+			 remote.setbalance(remote.getBalance()+amount);
 			 setbalance(balance - amount);
 		}
 	}	

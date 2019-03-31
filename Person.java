@@ -1,4 +1,4 @@
-package exceptions;
+package TinyTestJ;
 
 public class Person {
 	String name;
