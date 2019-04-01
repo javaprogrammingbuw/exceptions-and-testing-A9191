@@ -1,4 +1,4 @@
-package exceptions;
+
 
 public class ExceptionHandling {
 	
@@ -10,7 +10,9 @@ public class ExceptionHandling {
 		//
 		//2.) Taking the square root of a negative number won't cause
 		//the exception. Write your own Exception for this case and 
-		//write a method which throws this exception			          
+		//write a method which throws this exception	
+
+		//Intendation		          
 		        int a = 5; 
 		        int b = 0; 		          
 		        try
