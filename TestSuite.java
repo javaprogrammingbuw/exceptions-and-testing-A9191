@@ -1,4 +1,6 @@
+
 import TinyTestJ.Test;
+//Does not compile properly
 import static TinyTestJ.Assert.*;
 
 public class TestSuite {
