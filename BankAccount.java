@@ -1,28 +1,28 @@
 
 import java.util.Random;
 
-	public class BankAccount {
-	private static final String bic = "ABCDDEFFXXX" ;
-	private String iban = "DE00123456780000000000";
-	private int securityNumber;
-	private Person owner;
-	private double limit;
-	private double balance;
+public class BankAccount {
+	static final String bic = "ABCDDEFFXXX" ;
+	String iban = "DE00123456780000000000";
+	int securityNumber;
+	Person owner;
+	double limit;
+	double balance;
 	
-	public BankAccount(Person owner, double limit, double balance){
+	public BankAccount(Person owner, double balance, double limit){
 		this.owner=owner;
-		this.balance=balance;		
-		if(this.limit>0){
+		this.balance=balance;
+		if(limit>0){
 			this.limit=limit;
 		}
 		String j = "";
 		Random randomno = new Random();
-		for(int i = 0; i<7; i++){
+		for(int i = 0; i<6; i++){
 			j+=this.securityNumber= randomno.nextInt(10);		
 			this.securityNumber = Integer.parseInt(j);
 		}
 		
-		iban = iban.substring(0, 11);
+		iban = iban.substring(0, 12);
 		for(int i = 0; i<10; i++){
 			iban+=new Random().nextInt(10);
 		}								
@@ -30,14 +30,15 @@ import java.util.Random;
 	
 	public BankAccount(Person owner, double balance){
 		this.owner=owner;
+		this.limit=0.0;
 		this.balance=balance;		
 		String j = "";
 		Random randomno = new Random();
-		for(int i = 0; i<7; i++){
+		for(int i = 0; i<6; i++){
 			j+=this.securityNumber= randomno.nextInt(10);
 		}
 		this.securityNumber = Integer.parseInt(j);	
-		iban = iban.substring(0, 11);
+		iban = iban.substring(0, 12);
 		for(int i = 0; i<10; i++){
 			iban+=new Random().nextInt(10);
 		}								
@@ -47,7 +48,7 @@ import java.util.Random;
 		return balance;
 	}
 	
-	public String getIban(){
+	public String getIBAN(){
 		return iban;
 	}
 	
@@ -60,7 +61,7 @@ import java.util.Random;
 	}
 	
 	public double getLimit(){
-		return limit;
+		return this.limit;
 	}
 	public void setbalance(double balance){
 		this.balance=balance;
@@ -73,22 +74,22 @@ import java.util.Random;
 		}
 		else {			
 		
-		return 0.0;
+		return balance;
 		}
 	}
 	public double withdraw(double amount, int securityNumber){		
-		if((securityNumber==this.securityNumber)&&(amount<=limit)){							
-		balance = balance - amount;
-		return balance;
+		if((securityNumber==this.securityNumber)&&(amount<=(this.balance+this.limit))){							
+		this.balance = this.balance - amount;
+		return this.balance;
 		}
 		else {			
 		
-		return balance;
+		return this.balance;
 		}
 	}
 	
 	public void transfer(BankAccount remote, double amount, int securityNumber){
-		if((securityNumber==this.securityNumber)&&(amount<=limit)){							
+		if((securityNumber==this.securityNumber)&&(amount<=balance+limit)){							
 			 remote.setbalance(remote.getBalance()+amount);
 			 setbalance(balance - amount);
 		}

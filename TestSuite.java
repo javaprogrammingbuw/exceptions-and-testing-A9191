@@ -1,3 +1,4 @@
+import TinyTestJ.Test;
 import static TinyTestJ.Assert.*;
 
 public class TestSuite {
@@ -5,7 +6,7 @@ public class TestSuite {
 	@Test public static void InitTest1() {
 	    //define
 		Person owner = new Person("John Doe");
-	    BankAccount account = new BankAccount(owner, 3000.00,1000.00);
+	    BankAccount account = new BankAccount(owner, 3000.00, 1000.00);
 	    //test
 	    assertEquals(1000.00,account.getLimit(),0.001);
 		}
@@ -38,7 +39,7 @@ public class TestSuite {
 	    //changes
 	      account.withdraw(700.00,account.getSecurityNumber());
 	    //test
-	    assertEquals(300.00,account.getBalance(),0.001);
+	    assertEquals(2300.00,account.getBalance(),0.001);
 		}
 	
 	@Test public static void InitTest5() {
@@ -64,11 +65,14 @@ public class TestSuite {
 	}
 	
 	 @Test public static void InitTest7() {
-		  // define
-		  Person owner = new Person("John Doe");
-		  BankAccount account = new BankAccount(owner, 3000.00);
-		  //test
-		  assertEquals(owner.name,account.getOwner().name, 0.001);
+		 // define
+		 Person owner = new Person("John Doe");
+		 BankAccount account = new BankAccount(owner, 2000.00);
+		 //changes
+		 account.deposit(500.00,account.getSecurityNumber());
+		 account.withdraw(1200.00,account.getSecurityNumber());
+		 //test
+		 assertEquals(1300.00,account.getBalance(),0.001);
 	  }
 	  
 	 @Test public static void InitTest8() {
@@ -78,7 +82,8 @@ public class TestSuite {
 		  //changes
 		  account.withdraw(4300.00,account.getSecurityNumber());
 		  //test
-		  assertEquals(-1300,account.getBalance(),0.001);
+		  System.out.println(account.getBalance());
+		  assertEquals(-1300.00,account.getBalance(),0.001);
 	  }
 	 
 	 @Test public static void InitTest9() {
@@ -90,13 +95,14 @@ public class TestSuite {
 		  //changes
 		    account.transfer(remote,300.00,account.getSecurityNumber());
 		  //test
-		  assertEquals(700.00,account.getBalance(),0.001);
+		  assertEquals(2700.00,account.getBalance(),0.001);
 	  }
 
 	 @Test public static void InitTest10() {
 		  //define
 		  Person owner = new Person("John Doe");
 		  BankAccount account = new BankAccount(owner, 3000.00);
+		  System.out.println(account.getSecurityNumber());
 		  boolean result = (account.getSecurityNumber()<1000000) && (account.getSecurityNumber()>10000);
 		  //test
 		  assertEquals(true,result,0.001);
